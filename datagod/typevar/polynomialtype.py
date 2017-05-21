@@ -1,4 +1,4 @@
-from typebase import *
+from .typebase import *
 import numpy as np
 import matplotlib.pyplot as plt
 from random import *
@@ -30,18 +30,18 @@ class PolynomialType(TypeBase) :
 		return "Polynomial Type"
 
 	def printinfo(self, info):
-		print reporter.Reporter.OKBLUE + 'Info: ' + reporter.Reporter.ENDC + 'coff: ' + str(info[0])
-		print reporter.Reporter.OKBLUE + 'Info: ' + reporter.Reporter.ENDC + 'residuals: ' + str(info[1][0])
-		print reporter.Reporter.OKBLUE + 'Info: ' + reporter.Reporter.ENDC + 'rank: ' + str(info[1][1])
-		print reporter.Reporter.OKBLUE + 'Info: ' + reporter.Reporter.ENDC + 'singular_values: ' + str(info[1][2])
-		print reporter.Reporter.OKBLUE + 'Info: ' + reporter.Reporter.ENDC + 'rcond: ' + str(info[1][3])
+		print(reporter.Reporter.OKBLUE + 'Info: ' + reporter.Reporter.ENDC + 'coff: ' + str(info[0]))
+		print(reporter.Reporter.OKBLUE + 'Info: ' + reporter.Reporter.ENDC + 'residuals: ' + str(info[1][0]))
+		print(reporter.Reporter.OKBLUE + 'Info: ' + reporter.Reporter.ENDC + 'rank: ' + str(info[1][1]))
+		print(reporter.Reporter.OKBLUE + 'Info: ' + reporter.Reporter.ENDC + 'singular_values: ' + str(info[1][2]))
+		print(reporter.Reporter.OKBLUE + 'Info: ' + reporter.Reporter.ENDC + 'rcond: ' + str(info[1][3]))
 
 	def draw(self):
 		# real data
 		x = np.linspace(self.lowRange, self.highRange)
 		y = np.polynomial.polynomial.polyval(x, self.termsLst)
 		# cheat the data
-		cheatY = map(lambda yEle: yEle + self.swing * yEle * (2 * random() - 1), y)
+		cheatY = [yEle + self.swing * yEle * (2 * random() - 1) for yEle in y]
 		# cheat line
 		line2, = plt.plot(x, cheatY, 'ro')
 		# assert(true)

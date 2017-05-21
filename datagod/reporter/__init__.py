@@ -1,2 +1,2 @@
 __author__ = 'gaoce'
-from reporter import Reporter
+from .reporter import Reporter

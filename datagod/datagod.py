@@ -1,8 +1,8 @@
 __author__ = 'gaoce'
 
-from typevar import *
-from reporter import *
-from graphtype import GraphType
+from .typevar import *
+from .reporter import *
+from .graphtype import GraphType
 
 class DataGodBuilder(object):
 	"""Data God Factory"""
@@ -60,7 +60,7 @@ class DataGodBuilder(object):
 	def build(self):
 		# to do
 		if (self.type == GraphType.getDefaultType()):
-			print Reporter.FAIL + "Error: " + Reporter.ENDC + "Type nondetermined"
+			print(Reporter.FAIL + "Error: " + Reporter.ENDC + "Type nondetermined")
 			self.typeVar = TypeBase()
 			return self.typeVar
 		elif (self.type == GraphType.getPolynomialType()):

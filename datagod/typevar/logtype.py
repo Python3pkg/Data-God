@@ -1,4 +1,4 @@
-from typebase import *
+from .typebase import *
 import numpy as np
 import matplotlib.pyplot as plt
 from random import *
@@ -52,7 +52,7 @@ class LogType(TypeBase):
 			_base = self.base
 		if (intercept == None):
 			_intercept = self.intercept
-		res = map(lambda xEle: _term * self.__mathLog__(xEle, _base) + _intercept, x)
+		res = [_term * self.__mathLog__(xEle, _base) + _intercept for xEle in x]
 		return res
 
 	# remove the zero and inf, tricks
@@ -77,7 +77,7 @@ class LogType(TypeBase):
 		x = self.__removeZero__(x)#remove zero to make sure self.__mathLog__() can work
 		y = self.__removeZero__(y)#remove zero to make sure self.__mathLog__() can work
 		# cheat the data
-		cheatY = map(lambda yEle: yEle + self.swing * yEle * (2 * random() - 1), y)
+		cheatY = [yEle + self.swing * yEle * (2 * random() - 1) for yEle in y]
 		cheatY = self.__removeZero__(cheatY)
 		# cheat line
 		line2, = plt.plot(x, cheatY, 'ro')
